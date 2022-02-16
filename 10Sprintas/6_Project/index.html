@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Connect Four Project (Assignment)</title>
+	<style>
+		#grid {
+			border: 1px solid black;
+			border-radius: 10px;
+			background-color: darkgray;
+			display: flex;
+			flex-wrap: wrap;
+			height: 372px;
+			width: 434px;
+		}
+
+		#grid div {
+			border: 1px solid black;
+			border-radius: 10px;
+			background-color: yellow;
+			width: 60px;
+			height: 60px;
+		}
+
+		.floor {
+			border: 1px solid white !important;
+			background-color: white !important;
+		}
+
+		.player-one {
+			background-color: red !important;
+		}
+
+		.player-two {
+			background-color: blue !important;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<h3 id="result">Let's start!</h3>
+	<div id="grid">
+		<div>1</div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div>35</div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div>42</div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+		<div class="taken floor"></div>
+	</div>
+	<script src="app.js" charset="UTF-8"></script>
+</body>
+
+</html>
