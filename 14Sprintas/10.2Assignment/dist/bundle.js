@@ -1,0 +1,2 @@
+(()=>{"use strict";document.getElementById("calcBtn").addEventListener("click",(function(){var e,t,n,l=(e=document.getElementById("principal").value,t=document.getElementById("years").value,(n=document.getElementById("rate").value)&&(monthlyRate=n/100/12),e*monthlyRate/(1-Math.pow(1/(1+monthlyRate),12*t)));document.getElementById("monthlyPayment").innerHTML=l.toFixed(2)}))})();
+//# sourceMappingURL=bundle.js.map

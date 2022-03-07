@@ -161,3 +161,13 @@ button:active {
 button:focus {
   outline: 0;
 }
+
+body {
+    background-image: url(ed1ca473729a5362df18.jpg);
+    background-size: cover;
+    width: auto;
+    height: 100vh;
+    border: 10px solid grey;
+}
+
+/*# sourceMappingURL=bundle.css.map*/

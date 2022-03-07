@@ -1,3 +1,6 @@
+import "./styles.scss";
+import "./background.scss";
+
 let calculateMonthlyPayment = function (principal, years, rate) {
   if (rate) {
     monthlyRate = rate / 100 / 12;
