@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>My Library</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <script>
+    class Book {
+      constructor(title, author) {
+        this.title = title;
+        this.author = author;
+      }
+
+      toString() {
+        return `${this.title}, by ${this.author}`;
+      }
+    }
+
+    class Film {
+      constructor(name, genre, blurb) {
+        this.name = name;
+        this.genre = genre;
+        this.blurb = blurb;
+      }
+
+      toString() {
+        return `${this.name} [${this.genre}], ${this.blurb}`;
+      }
+    }
+
+    const books = [
+      new Book("Millennium", "Stieg Larsson"),
+      new Book("A Christmas Carol", "Charles Dickens"),
+      new Book("The Son", "Jo Nesbo"),
+    ];
+
+    const films = [
+      new Film("Airplane", "Comedy", "Classic plane spoof"),
+      new Film("Skyfall", "Adventure", "Bond spy yarn"),
+      new Film("Love Actually", "RomCom", " Hugh Grant playing Hugh Grant"),
+      new Film("Mission Impossible", "Adventure", " Hi-octane stunt fest"),
+    ];
+
+    const bookList = React.createElement(
+      "ul",
+      null,
+      books.map((b, i) =>
+        React.createElement("li", { key: i, title: b.toString() }, b.title)
+      )
+    );
+
+    const filmList = React.createElement(
+      "ul",
+      null,
+      films.map((f, i) =>
+        React.createElement("li", { key: i, title: f.toString() }, f.name)
+      )
+    );
+
+    const library = React.createElement(
+      "div",
+      null,
+      React.createElement("h1", null, "My Library"),
+      React.createElement("h2", null, "Books"),
+      bookList,
+      React.createElement("h2", null, "Films"),
+      filmList
+    );
+
+    ReactDOM.render(library, document.getElementById("root"));
+  </script>
+</body>
+
+</html>

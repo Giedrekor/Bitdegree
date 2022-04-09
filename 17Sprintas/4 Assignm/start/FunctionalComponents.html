@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>My Library</title>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Book {
+      constructor(title, author) {
+        this.title = title;
+        this.author = author;
+      }
+
+      toString() {
+        return `${this.title}, by ${this.author}`;
+      }
+    }
+
+    class Film {
+      constructor(name, genre, blurb) {
+        this.name = name;
+        this.genre = genre;
+        this.blurb = blurb;
+      }
+
+      toString() {
+        return `${this.name} [${this.genre}], ${this.blurb}`;
+      }
+    }
+
+    const books = [
+      new Book("Millennium", "Stieg Larsson"),
+      new Book("A Christmas Carol", "Charles Dickens"),
+      new Book("The Son", "Jo Nesbo"),
+    ];
+
+    const films = [
+      new Film("Airplane", "Comedy", "Classic plane spoof"),
+      new Film("Skyfall", "Adventure", "Bond spy yarn"),
+      new Film("Love Actually", "RomCom", " Hugh Grant playing Hugh Grant"),
+      new Film("Mission Impossible", "Adventure", " Hi-octane stunt fest"),
+    ];
+
+    function Library({ books, films, tabularFormat = false }) {
+      if (tabularFormat) {
+        return (
+          <div>
+            <h1>My Library</h1>
+            <h2>Books</h2>
+            <Table items={books} />
+            <h2>Films</h2>
+            <Table items={films} />
+            <LikePanel />
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <h1>My Library</h1>
+            <h2>Books</h2>
+            <ItemsList items={books} ordered={true} />
+            <h2>Films</h2>
+            <ItemsList items={films} />
+            <LikePanel />
+          </div>
+        );
+      }
+    }
+
+    Library.propTypes = {
+      books: PropTypes.array.isRequired,
+      films: PropTypes.array.isRequired,
+      tabularFormat: PropTypes.bool,
+    };
+
+    function LikePanel() {
+      const [myState, setMyState] = React.useState({
+        likes: 0,
+      });
+
+      function onLike() {
+        setMyState({
+          likes: myState.likes + 1,
+        });
+      }
+
+      function onResetLikes() {
+        setMyState({
+          likes: 0,
+        });
+      }
+
+      return (
+        <div className="likePanel">
+          <h2>Like My Library</h2>
+          <span>
+            Likes: <b>{myState.likes}</b>
+          </span>
+          &nbsp;
+          <button onClick={() => onLike()}>Like</button>
+          <button onClick={() => onResetLikes()}>Reset like count</button>
+        </div>
+      );
+    }
+
+    function ItemsList({ items = [], ordered = false }) {
+      if (items.length == 0) {
+        return <div>[no items]</div>;
+      } else {
+        const ListTag = ordered ? "ol" : "ul";
+        return (
+          <ListTag>
+            {items.map((item, i) => (
+              <li key={i}>{item.toString()} </li>
+            ))}
+          </ListTag>
+        );
+      }
+    }
+
+    ItemsList.propTypes = {
+      items: PropTypes.array,
+      ordered: PropTypes.bool,
+    };
+
+    function Table({ items = [] }) {
+      if (items.length == 0) {
+        return <div>[no items]</div>;
+      } else {
+        return (
+          <table>
+            <TableHead sampleObject={items[0]} />
+            <TableBody objects={items} />
+          </table>
+        );
+      }
+    }
+
+    Table.propTypes = {
+      items: PropTypes.array,
+    };
+
+    function TableHead({ sampleObject }) {
+      return (
+        <thead>
+          <TableRow data={Object.keys(sampleObject)} head={true} />
+        </thead>
+      );
+    }
+
+    TableHead.propTypes = {
+      sampleObject: PropTypes.object.isRequired,
+    };
+
+    function TableBody({ objects }) {
+      return (
+        <tbody>
+          {objects.map((obj, i) => (
+            <TableRow key={i} data={Object.values(obj)} />
+          ))}
+        </tbody>
+      );
+    }
+
+    TableBody.propTypes = {
+      objects: PropTypes.array.isRequired,
+    };
+
+    function TableRow({ data, head = false }) {
+      const CellTag = head ? "th" : "td";
+      return (
+        <tr>
+          {data.map((d, i) => (
+            <CellTag key={i}>{d}</CellTag>
+          ))}
+        </tr>
+      );
+    }
+
+    TableRow.propTypes = {
+      data: PropTypes.array.isRequired,
+      head: PropTypes.bool,
+    };
+
+    ReactDOM.render(
+      <Library films={films} books={books} tabularFormat={true} />,
+      document.getElementById("root")
+    );
+  </script>
+</body>
+
+</html>
