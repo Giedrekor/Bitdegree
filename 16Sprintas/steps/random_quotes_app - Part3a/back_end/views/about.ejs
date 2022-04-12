@@ -1,0 +1,37 @@
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+  <body>
+    <%- include('./partials/navbar.ejs') %>
+
+      <div class="about content">
+        <h2>Welcome to the About page!</h1>
+          <p>This quote app allows you to see some quotes!</p>
+
+          <br />
+          <p>
+            But here's what
+            <span style="font-style: italic; font-weight: bold">you</span>
+            can do with the app:
+          </p>
+          <ul style="margin-left: 20px">
+            <li>See every quote in the database,</li>
+            <li>Create (and then see your user-defined quotes), and</li>
+            <li>Delete user-created quotes!</li>
+          </ul>
+          <br />
+          <p>
+            It also uses Node.js's EJS and ESM modules to create a far-more
+            modular,
+            <span style="font-style: italic">maintainable</span> app.
+
+          </p>
+      </div>
+
+      <%- include('./partials/footer.ejs') %>
+
+        <!-- <script src="../backEnd.js"></script> -->
+  </body>
+
+</html>
